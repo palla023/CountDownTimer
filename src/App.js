@@ -19,17 +19,14 @@ const App = () => {
   var remainingMinutes = Math.floor((gap % hours) / minutes);
   var remainingSeconds = Math.floor((gap % minutes) / seconds);
 
-  //If this function is not there means we have to Refresh EveryTime for the Remaining Offer time, To See live we have to Use this Function
+ //If this function is not there means we have to Refresh EveryTime for the Remaining Offer time, To See live we have to Use this Function
   //whenever the dependency variable changes, that time the component will be re-rendered
   useEffect(() => {
     //SetTime will take 2 arg. 1=> what action tp be Performed 2=>for how many millisec you want to update the function
     setTimeout(() => setcurrentTime(new Date().getTime()), 1000);
-  }, [currentTime]); // 11:30:55   Based on current time means , for every milliSecond the component will be reRenderd
-
-  useEffect(() => {
-    const gap = endTime - currentTime;
     setOfferEnded(gap <= 0);
-  }, [endTime, currentTime]);
+  }, [gap]); // 11:30:55   Based on current time means , for every milliSecond the component will be reRenderd
+
 
   return (
     <div>
